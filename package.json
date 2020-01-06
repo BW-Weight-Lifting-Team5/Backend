@@ -1,0 +1,36 @@
+{
+  "name": "bw-weight-training-team-5",
+  "version": "1.0.0",
+  "description": "Unit4: Backend",
+  "main": "index.js",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "helmet": "^3.21.2",
+    "jsonwebtoken": "^8.5.1",
+    "knex": "^0.20.6",
+    "nodemon": "^2.0.2",
+    "package.json": "^2.0.1",
+    "script": "^0.1.4",
+    "scripts": "^0.1.0",
+    "server": "^1.0.21",
+    "sqlite3": "^4.1.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js",
+    "server": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BW-Weight-Lifting-Team5/Backend.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/BW-Weight-Lifting-Team5/Backend/issues"
+  },
+  "homepage": "https://github.com/BW-Weight-Lifting-Team5/Backend#readme"
+}
