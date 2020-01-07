@@ -18,7 +18,6 @@ server.use(express.json());
 // RUNNING UNDER http://localhost:5000/login and /register
 server.use("/api/auth", authRouter);
 server.use("/api/user", userRouter);
-// server.use('/exercises')
 
 // SET UP BASIC ENDPOINTS
 server.get("/", (req, res) => {
@@ -26,5 +25,3 @@ server.get("/", (req, res) => {
 });
 
 module.exports = server;
-
-

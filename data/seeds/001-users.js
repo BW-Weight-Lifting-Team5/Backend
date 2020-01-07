@@ -18,6 +18,12 @@ exports.seed = function(knex) {
           password: "password",
           firstName: "Kelly",
           lastName: "Angry"
+        },
+        {
+          email: "testin123@gmail.com",
+          password: "susan",
+          firstName: "help",
+          lastName: "me"
         }
       ]);
     });

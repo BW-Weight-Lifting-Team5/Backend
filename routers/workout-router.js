@@ -1,7 +1,7 @@
 const router = require("express").Router();
 
 const UserModel = require("../models/user-model.js");
-const middleware = require("../auth/verify-middleware.js");
+const middleware = require("../auth/auth-middleware.js");
 
 // GETS ALL USERS
 router.get("/", (req, res) => {
