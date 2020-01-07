@@ -53,9 +53,6 @@ router.get("/workouts/:workout", middleware, (req, res) => {
 
   UserModel.getWorkoutById(workout)
     .then(exercise => {
-      // if(!workout){
-      //     res.status(404).json({ message: "There is no workout by this id "})
-      // } else {
       res.status(200).json(exercise);
     })
     .catch(err => {
