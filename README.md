@@ -1,3 +1,23 @@
 # Backend
+
 Unit4: Backend
-[![Netlify Status](https://api.netlify.com/api/v1/badges/f8583a68-35af-494b-a208-34f0486a7554/deploy-status)](https://app.netlify.com/sites/weightjournal/deploys)
+https://weight-lifters-journal-5.herokuapp.com/
+
+Login and Register
+Register
+post:api/auth/register
+{
+"email": "test123@email.com",
+"password": "password",
+"firstName": "Who",
+"lastName": "knows"
+}
+
+    Login
+    post:api/auth/login
+    token
+
+{
+"email": "test123@email.com",
+"password": "password"
+}
