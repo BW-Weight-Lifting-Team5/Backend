@@ -2,6 +2,7 @@ const router = require("express").Router();
 
 const ExerciseModel = require("../models/exercise-model.js");
 const middleware = require("../auth/verify-middleware.js");
+const validateUserId = require("../auth/validatemiddleware.js");
 
 // GETS ALL EXERCISES INCLUDING BODYPART/REGIION
 router.get("/", middleware, (req, res) => {
