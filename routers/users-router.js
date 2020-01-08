@@ -47,17 +47,14 @@ router.post("/login", (req, res) => {
       res.status(500).json(error);
     });
 });
-
-function makeToken(user) {
+function getJwtToken(username) {
   const payload = {
-    email: user.email,
-    password: user.password
+    username,
+    department: "dev"
   };
-  const secret = process.env.JWT_SECRET || "Lift";
 
-  const options = {
-    expiresIn: "1h"
-  };
+  const secret = process.env.JWT_SECRET || "lifting"; //env
+
   return jwt.sign(payload, secret, options);
 }
 

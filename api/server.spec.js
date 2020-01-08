@@ -1,5 +1,5 @@
 const request = require("supertest");
-const server = require("./server.js/index.js.js");
+const server = require("./api/server.js/index.js");
 
 describe("Testing server route", () => {
   describe("Test Register", () => {
