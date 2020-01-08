@@ -16,14 +16,14 @@ server.use(helmet());
 server.use(cors());
 server.use(express.json());
 
-// RUNNING UNDER http://localhost:5000/login and /register
+// RUNNING UNDER http://localhost:8000/login and /register
 server.use("/api/auth", authRouter);
-server.use("/api/user", userRouter);
+server.use("/api/workouts", workoutRouter);
 server.use("/api/exercises", exerciseRouter);
 
 // SET UP BASIC ENDPOINTS
 server.get("/", (req, res) => {
-  res.send("Server is Running Finally!");
+  res.send("💚 || If you can read this, it's working! ;) || 💚");
 });
 
 module.exports = server;
