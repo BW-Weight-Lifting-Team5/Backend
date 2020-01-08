@@ -6,7 +6,7 @@ module.exports = (req, res, next) => {
   const token = req.headers.authorization;
 
   if (token) {
-    const secret = process.env.JWT_SECRET || "Lift";
+    const secret = process.env.JWT_SECRET || "Journal";
     jwt.verify(token, secret, function(err, decodedToken) {
       if (err) {
         res.status(401).json({ message: "Invalid token." });
