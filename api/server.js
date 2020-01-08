@@ -21,7 +21,7 @@ server.use("/api/user", userRouter);
 
 // SET UP BASIC ENDPOINTS
 server.get("/", (req, res) => {
-  res.status(200).json("Server is running!");
+  res.send("Server is Running!");
 });
 
 module.exports = server;
