@@ -4,6 +4,7 @@
   "description": "Unit4: Backend",
   "main": "index.js",
   "dependencies": {
+    "axios": "^0.19.1",
     "babel-preset-env": "^1.7.0",
     "bcryptjs": "^2.4.3",
     "build": "^0.1.4",
@@ -17,15 +18,18 @@
     "middleware": "^1.0.0",
     "nodemon": "^2.0.2",
     "pg": "^7.17.0",
+    "request": "^2.88.0",
     "sqlite3": "^4.1.1",
+    "start": "^5.1.0",
     "supertest": "^4.0.2"
   },
   "devDependencies": {
-    "babel-cli": "^6.26.0"
+    "babel-cli": "^6.26.0",
+    "eslint": "^6.0.0"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js",
+    "start": "node index.js",
     "server": "nodemon index.js"
   },
   "repository": {
