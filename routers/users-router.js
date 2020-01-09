@@ -34,7 +34,7 @@ router.post("/login", (req, res) => {
     .first()
     .then(user => {
       if (user && bcrypt.compareSync(password, user.password)) {
-        const token = makeToken(user);
+        const token = getJwtToken(user);
 
         const userId = user.id;
 
