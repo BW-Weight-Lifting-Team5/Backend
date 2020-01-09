@@ -1,3 +1,4 @@
+
 const router = require("express").Router();
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
@@ -34,7 +35,7 @@ router.post("/login", (req, res) => {
     .first()
     .then(user => {
       if (user && bcrypt.compareSync(password, user.password)) {
-        const token = getJwtToken(user);
+        const token = makeToken(user);
 
         const userId = user.id;
 
@@ -47,14 +48,17 @@ router.post("/login", (req, res) => {
       res.status(500).json(error);
     });
 });
-function getJwtToken(username) {
+
+function makeToken(user) {
   const payload = {
-    username,
-    department: "dev"
+    email: user.email,
+    password: user.password
   };
+  const secret = process.env.JWT_SECRET || "Lifting Workout";
 
-  const secret = process.env.JWT_SECRET || "lifting"; //env
-
+  const options = {
+    expiresIn: "1h"
+  };
   return jwt.sign(payload, secret, options);
 }
 

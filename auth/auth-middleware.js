@@ -1,5 +1,6 @@
 const jwt = require("jsonwebtoken");
 
+
 // USED TO AUTHENTICATE USER TO ACCESS LIFTING INFORMATION
 
 module.exports = (req, res, next) => {
