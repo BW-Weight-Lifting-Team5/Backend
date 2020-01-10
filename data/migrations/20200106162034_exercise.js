@@ -1,30 +1,30 @@
 exports.up = function(knex) {
-  return knex.schema.createTable("exercises", tbl => {
-    tbl.increments();
+  return knex.schema.createTable("journal", table => {
+    table.increments();
 
-    tbl.integer("exercise", 255).notNullable();
-    tbl.integer("weight", 255).notNullable();
-
-    tbl
-      .string("units", 128)
-      .defaultTo("lbs")
-      .notNullable();
-
-    tbl.integer("sets", 255).notNullable();
-
-    tbl.integer("reps", 255).notNullable();
-
-    tbl
-      .integer("workout_id")
-      .unsigned()
-      .notNullable()
+    table
+      .integer("userId")
       .references("id")
-      .inTable("workout")
-      .onDelete("RESTRICT")
+      .inTable("users")
+      .onDelete("CASCADE")
       .onUpdate("CASCADE");
+
+    table.string("exercise", 20).notNullable();
+
+    table.string("weight", 10).notNullable();
+
+    table.integer("reps").notNullable();
+
+    table.integer("sets").notNullable();
+
+    table.string("date", 20).notNullable();
+
+    table.string("muscle", 20).notNullable();
+
+    table.string("journal", 128).notNullable();
   });
 };
 
 exports.down = function(knex) {
-  return knex.schema.dropTableIfExists("exercises");
+  return knex.schema.dropTableIfExists("journal");
 };

@@ -2,24 +2,22 @@ const express = require("express");
 const cors = require("cors");
 const helmet = require("helmet");
 
-// IMPORT AUTH
-const authRouter = require("../routers/users-router.js");
-
-// IMPORT ROUTERS
-const workoutRouter = require("../routers/workout-router.js");
-const exerciseRouter = require("../routers/exercise-router.js");
-
-// SETTING UP SERVER
 const server = express();
+
+// const authenticate = require('../auth/auth-middleware.js');
+const authRouter = require("../routers/auth-router");
+const workoutRouter = require("../routers/workout-router");
+const usersRouter = require("../routers/users-router");
+const usersJournalRouter = require("../routers/exerciserouter");
 
 server.use(helmet());
 server.use(cors());
 server.use(express.json());
 
-// RUNNING UNDER http://localhost:8000/login and /register
 server.use("/api/auth", authRouter);
-server.use("/api/workouts", workoutRouter);
-server.use("/api/exercises", exerciseRouter);
+server.use("/api/workout", workoutRouter);
+server.use("/api/users", usersRouter);
+server.use("/api/exercise", exerciseRouter);
 
 // SET UP BASIC ENDPOINTS
 server.get("/", (req, res) => {

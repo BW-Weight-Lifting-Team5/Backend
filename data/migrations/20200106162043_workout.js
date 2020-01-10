@@ -1,25 +1,23 @@
 exports.up = function(knex) {
-  return knex.schema.createTable("workout", tbl => {
-    tbl.increments();
+  return knex.schema.createTable("workoutjournal", table => {
+    table.increments();
 
-    tbl
-      .date("date", 128)
-      .notNullable()
-      .defaultTo(knex.fn.now());
-
-    tbl.string("workout_name", 255).notNullable();
-
-    tbl
-      .integer("user_id")
-      .unsigned()
-      .notNullable()
+    table
+      .integer("userId")
       .references("id")
       .inTable("users")
+      .onDelete("CASCADE")
+      .onUpdate("CASCADE");
+
+    table
+      .integer("journalId")
+      .references("id")
+      .inTable("journal")
       .onDelete("CASCADE")
       .onUpdate("CASCADE");
   });
 };
 
 exports.down = function(knex) {
-  return knex.schema.dropTableIfExists("workout");
+  return knex.schema.dropTableIfExists("workoutjournal");
 };
