@@ -4,7 +4,7 @@ const jwt = require("jsonwebtoken");
 const Users = require("../routers/users-router");
 const restricted = require("../auth/auth-middleware");
 
-const Projects = require("./users-model");
+const Projects = require("../models/user-model");
 
 router.get("/", (req, res) => {
   Projects.find()
