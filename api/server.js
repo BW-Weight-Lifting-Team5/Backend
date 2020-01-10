@@ -8,7 +8,7 @@ const server = express();
 const authRouter = require("../routers/auth-router");
 const workoutRouter = require("../routers/workout-router");
 const usersRouter = require("../routers/users-router");
-const usersJournalRouter = require("../routers/exerciserouter");
+const exerciseRouter = require("../routers/exercise-router");
 
 server.use(helmet());
 server.use(cors());
