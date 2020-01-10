@@ -1,64 +1,55 @@
-const db = require("../data/dbConfig.js");
+const db = require("../database/db");
 
 module.exports = {
-  getAll,
-  findWorkout,
-  getWorkoutById,
-  getUserById,
-  addWorkout,
+  add,
+  find,
+  findBy,
+  findById,
   update,
   remove
 };
 
-// FINDS ALL USERS
-function getAll() {
-  return db("users");
+function find() {
+  return db("users").select("id", "username", "password");
 }
 
-// FINDS BY ID
-function getUserById(id) {
+function findBy(filter) {
+  return db("users").where(filter);
+}
+
+function findById(id) {
   return db("users")
+    .select("id", "username", "password")
     .where({ id })
     .first();
 }
 
-// FINDS ALL USER WORKOUTS
-function findWorkout(userId) {
-  return db("workout as w")
-    .select("w.id", "u.firstName", "w.workout_name", "w.date")
-    .join("users as u", "w.user_id", "=", "u.id")
-    .where("w.user_id", userId);
-}
-
-// POSTS NEW WORKOUT
-function addWorkout(data) {
-  return db("workout")
-    .insert(data, "id")
+function add(user) {
+  return db("users")
+    .insert(user)
     .then(ids => {
       const [id] = ids;
-
-      return getWorkoutById(id);
+      return db("users")
+        .select("id", "username", "password")
+        .where({ id })
+        .first();
     });
 }
 
-// GETS WORKOUT BY ID
-function getWorkoutById(workout) {
-  return db("workout")
-    .select("id", "workout_name", "date")
-    .where("id", workout);
-}
-
-// EDITS WORKOUT
 function update(id, changes) {
-  return db("workout")
+  return db("users")
     .where("id", id)
     .update(changes)
-    .then(count => (count > 0 ? getWorkoutById(id) : null));
+    .then(() => {
+      const id = ids;
+      return db("users")
+        .where({ id })
+        .first();
+    });
 }
 
-// REMOVES WORKOUT
 function remove(id) {
-  return db("workout")
+  return db("users")
     .where({ id })
     .delete();
 }
