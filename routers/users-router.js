@@ -1,4 +1,3 @@
-
 const router = require("express").Router();
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
@@ -54,7 +53,7 @@ function makeToken(user) {
     email: user.email,
     password: user.password
   };
-  const secret = process.env.JWT_SECRET || "Lifting Workout";
+  const secret = process.env.JWT_SECRET || "Lift";
 
   const options = {
     expiresIn: "1h"

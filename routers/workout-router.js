@@ -1,9 +1,10 @@
 const router = require("express").Router();
 
 const UserModel = require("../models/user-model.js");
-const middleware = require("../auth/validate-middleware.js");
+const validateUserId = require("../auth/validate-middleware.js");
+const middleware = require("../auth/auth-middleware.js");
 
-// GETS ALL USERS
+/// GETS ALL USERS
 router.get("/", (req, res) => {
   UserModel.getAll()
     .then(user => {
@@ -33,38 +34,34 @@ router.get("/:id", middleware, (req, res) => {
 
 // GET USER WORKOUTS
 // GIVES FIRST NAME, WORKOUT_NAME, AND DATE
-router.get("/:id/workouts", middleware, (req, res) => {
-  const id = req.params.id;
+router.get("/:userId/all", validateUserId, middleware, (req, res) => {
+  const { userId } = req.params;
 
-  UserModel.findWorkout(id)
+  console.log(req.params);
+  UserModel.findWorkout(userId)
     .then(workout => {
       res.status(200).json(workout);
     })
     .catch(err => {
-      res.status(500).json({ message: "Problem receiving user." });
+      res.status(500).json({ message: "Problem receiving workouts." });
     });
 });
-
-// GETS INDIVIDUAL WORKOUT
 // Provides ID, workout_name, date
-router.get("/workouts/:workout", middleware, (req, res) => {
+router.get("/:userId/:workout", validateUserId, middleware, (req, res) => {
   const { workout } = req.params;
-  console.log(req.params);
-
   UserModel.getWorkoutById(workout)
     .then(exercise => {
-      res.status(200).json(exercise);
+      if (exercise.length === 0) {
+        res.status(404).json({ message: "There is no workout by this id " });
+      } else {
+        res.status(200).json(exercise);
+      }
     })
     .catch(err => {
       res.status(500).json({ message: "Problem receiving workout." });
     });
 });
-
-// POST WORKOUT, Adds new workout,
-// generates new user_id for workout,
-// date (optional)
-// workout title required
-router.post("/:id/workouts", middleware, (req, res) => {
+router.post("/:id", middleware, (req, res) => {
   const newWorkout = req.body;
   newWorkout.user_id = req.params.id;
 
@@ -82,7 +79,6 @@ router.post("/:id/workouts", middleware, (req, res) => {
       });
   }
 });
-
 // EDITS INDIVIDUAL WORKOUT
 router.put("/:id", middleware, (req, res) => {
   const id = req.params.id;
@@ -107,6 +103,7 @@ router.put("/:id", middleware, (req, res) => {
 router.delete("/:id", middleware, (req, res) => {
   const id = req.params.id;
 
+  console.log(req.params);
   UserModel.remove(id)
     .then(count => {
       if (count > 0) {
@@ -119,4 +116,5 @@ router.delete("/:id", middleware, (req, res) => {
       res.status(500).json({ message: "Problem deleting workout." });
     });
 });
+
 module.exports = router;
